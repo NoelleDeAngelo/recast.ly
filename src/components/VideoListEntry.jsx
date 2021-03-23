@@ -1,23 +1,36 @@
 import App from './App.js';
-var VideoListEntry = (props) => (
-  <div className="video-list-entry media">
-    <div className="media-left media-middle">
-      <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
-    </div>
-    <div className="media-body">
-      <div onClick={App.changeState.bind(this, props)} className="video-list-entry-title">{props.video.snippet.title}</div>
-      <div className="video-list-entry-detail">{props.video.snippet.description}</div>
-    </div>
-  </div>
-);
+
+class VideoListEntry extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+
+
+  render() {
+    var eachVideo = this;
+    console.log(eachVideo);
+    var fun = function() {
+      eachVideo.props.changeState(eachVideo.props.video);
+    };
+    return (
+      <div className="video-list-entry media">
+        <div className="media-left media-middle">
+          <img className="media-object" src={this.props.video.snippet.thumbnails.default.url} alt="" />
+        </div>
+        <div className="media-body">
+          <div onClick={fun} className="video-list-entry-title">{eachVideo.props.video.snippet.title}</div>
+          <div className="video-list-entry-detail">{eachVideo.props.video.snippet.description}</div>
+        </div>
+      </div>);
+  }
+}
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
 VideoListEntry.propTypes = {
   video: PropTypes.object.isRequired
 };
-
-
 
 
 
