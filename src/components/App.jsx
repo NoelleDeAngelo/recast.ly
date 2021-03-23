@@ -7,13 +7,15 @@ class App extends React.Component {
     super(props);
 
     this.changeState = this.changeState.bind(this);
+
     this.state = {
       currentVideo: exampleVideoData[1]
     };
   }
 
   changeState(video) {
-    this.setState({currentVideo: this.props.video});
+    console.log('passed from click', video);
+    this.setState({currentVideo: video});
   }
 
   render() {
@@ -27,7 +29,7 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <div><VideoPlayer video = {video}/></div>
+            <div><VideoPlayer video = {this.state.currentVideo}/></div>
           </div>
           <div className="col-md-5">
             <div><VideoList changeState = {this.changeState} videos= {exampleVideoData}/></div>

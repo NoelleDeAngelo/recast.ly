@@ -9,9 +9,8 @@ class VideoListEntry extends React.Component {
 
   render() {
     var eachVideo = this;
-    console.log(eachVideo);
     var fun = function() {
-      eachVideo.props.changeState(eachVideo.props.video);
+      this.props.changeState(this.props.video);
     };
     return (
       <div className="video-list-entry media">
@@ -19,7 +18,7 @@ class VideoListEntry extends React.Component {
           <img className="media-object" src={this.props.video.snippet.thumbnails.default.url} alt="" />
         </div>
         <div className="media-body">
-          <div onClick={fun} className="video-list-entry-title">{eachVideo.props.video.snippet.title}</div>
+          <div onClick={() => this.props.changeState(this.props.video)} className="video-list-entry-title">{eachVideo.props.video.snippet.title}</div>
           <div className="video-list-entry-detail">{eachVideo.props.video.snippet.description}</div>
         </div>
       </div>);
